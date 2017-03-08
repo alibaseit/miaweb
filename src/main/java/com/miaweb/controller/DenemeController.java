@@ -17,6 +17,6 @@ public class DenemeController {
 
 	@GetMapping("/code/{code}")
 	public Product expiredProducts(@PathVariable(value = "code") String code) {
-		return productService1.findByCode(code);
+		return productService.findByCode(code);
 	}
 }
