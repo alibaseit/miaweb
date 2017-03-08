@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://ubuntu1:3306/miaweb?useSSL=false
+    username: dogan
+    password: Xq4bsBOKB4PXSJ4G9sM7.
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
