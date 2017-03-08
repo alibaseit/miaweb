@@ -15,6 +15,11 @@ public class DenemeController {
 	@Autowired
 	private ProductService productService;
 
+	@GetMapping("/")
+	public String hi() {
+		return "hi";
+	}
+
 	@GetMapping("/code/{code}")
 	public Product expiredProducts(@PathVariable(value = "code") String code) {
 		return productService.findByCode(code);
