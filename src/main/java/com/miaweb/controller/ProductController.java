@@ -3,7 +3,6 @@ package com.miaweb.controller;
 import java.util.List;
 import java.util.concurrent.Future;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,6 @@ import com.miaweb.service.product.ProductService;
 public class ProductController {
 	private final ProductService productService;
 
-	@Autowired
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}

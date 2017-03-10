@@ -5,7 +5,6 @@ import java.util.concurrent.Future;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,10 +14,8 @@ import com.miaweb.repository.jpa.ProductRepository;
 
 @Service
 public class ProductService {
-
 	private final ProductRepository productRepository;
 
-	@Autowired
 	public ProductService(ProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
@@ -51,7 +48,7 @@ public class ProductService {
 	public Product findByCode(String code) {
 		return productRepository.deneme(code);
 	}
-	
+
 	@Transactional
 	public int updateName(String name, long id) {
 		return productRepository.updateName(name, id);

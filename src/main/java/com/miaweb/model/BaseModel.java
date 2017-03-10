@@ -1,6 +1,6 @@
 package com.miaweb.model;
 
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +15,7 @@ public class BaseModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@CreatedDate
-	private ZonedDateTime createdDate = ZonedDateTime.now();
+	private Date createdDate = new Date();
 
 	public long getId() {
 		return id;
