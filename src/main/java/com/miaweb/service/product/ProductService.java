@@ -1,17 +1,14 @@
 package com.miaweb.service.product;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.Future;
-
-import javax.transaction.Transactional;
-
+import com.miaweb.model.definition.Product;
+import com.miaweb.repository.jpa.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.miaweb.model.definition.Product;
-import com.miaweb.repository.jpa.ProductRepository;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.concurrent.Future;
 
 @Service
 public class ProductService {

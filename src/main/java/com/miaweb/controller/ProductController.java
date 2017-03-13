@@ -1,15 +1,13 @@
 package com.miaweb.controller;
 
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.Future;
-
+import com.miaweb.model.definition.Product;
+import com.miaweb.service.product.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
-import com.miaweb.model.definition.Product;
-import com.miaweb.service.product.ProductService;
+import java.util.List;
+import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping(value = "/product")

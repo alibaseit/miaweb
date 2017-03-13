@@ -1,14 +1,13 @@
 package com.miaweb.config;
 
-import java.util.stream.IntStream;
-
+import com.miaweb.model.definition.Product;
+import com.miaweb.repository.jpa.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import com.miaweb.model.definition.Product;
-import com.miaweb.repository.jpa.ProductRepository;
+import java.util.stream.IntStream;
 
 @Component
 @Profile(value = { "dev" })

@@ -1,16 +1,10 @@
 package com.miaweb.model.definition;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.miaweb.model.BaseEntity;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "pstkmc")

@@ -10,7 +10,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.Future;
 
 @Repository
