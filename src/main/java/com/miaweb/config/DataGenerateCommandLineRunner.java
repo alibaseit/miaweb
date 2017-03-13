@@ -12,7 +12,7 @@ import com.miaweb.repository.jpa.ProductRepository;
 
 @Component
 @Profile(value = { "dev" })
-public class ProductInit implements CommandLineRunner {
+public class DataGenerateCommandLineRunner implements CommandLineRunner {
 	private ProductRepository prodRepo;
 
 	@Autowired

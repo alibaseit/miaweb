@@ -36,7 +36,8 @@ public class ProductControllerTest {
 	
 	@Test
 	public void testAllProducts() throws Exception {
-		mockMvc.perform(get("/product")).andExpect(status().isOk());
+		mockMvc.perform(get("/product"))
+				.andExpect(status().isOk());
 	}
 
 }

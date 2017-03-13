@@ -33,7 +33,9 @@ public class DemoApplicationTests {
 
 	@Test
 	public void testDenemeControllerContainAnyText() throws Exception {
-		mockMvc.perform(get("/deneme/")).andExpect(status().isOk()).andExpect(content().string(containsString("hi")));
-	}
+        mockMvc.perform(get("/deneme/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("hi")));
+    }
 
 }

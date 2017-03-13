@@ -10,12 +10,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.miaweb.model.BaseModel;
+import com.miaweb.model.BaseEntity;
 
 @Entity
 @Table(name = "pstkmc")
 @NamedQuery(name = "Product.deneme", query = "select p from Product p where p.code = ?1")
-public class Product extends BaseModel {
+public class Product extends BaseEntity {
 
 	@Column(name = "pmckod", unique = true, length = 15)
 	private String code;

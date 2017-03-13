@@ -1,6 +1,7 @@
 package com.miaweb.service.product;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.Future;
 
 import javax.transaction.Transactional;
@@ -20,9 +21,9 @@ public class ProductService {
 		this.productRepository = productRepository;
 	}
 
-	public Product productById(Long id) {
-		return productRepository.findOne(id);
-	}
+    public Product productById(String id) {
+        return productRepository.findOne(id);
+    }
 
 	public Page<Product> productsPageByPage(Pageable pageable) {
 		return productRepository.findAll(pageable);
@@ -50,8 +51,14 @@ public class ProductService {
 	}
 
 	@Transactional
-	public int updateName(String name, long id) {
-		return productRepository.updateName(name, id);
-	}
+    public int updateName(String name, String id) {
+        return productRepository.updateName(name, id);
+    }
 
+    public Product update(String id, Product product) {
+        Product old = productRepository.getOne(id);
+        old.setName(product.getName());
+        old.setCode(product.getCode());
+        return productRepository.save(old);
+    }
 }
