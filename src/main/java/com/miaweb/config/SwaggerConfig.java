@@ -12,13 +12,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2 // Enable swagger 2.0 spec
-public class SwaggerConfig { // @formatter:off
+public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
 				.apis(RequestHandlerSelectors.basePackage("com.miaweb.controller")).paths(PathSelectors.any()).build()
 				.apiInfo(apiInfo());
-	} // @formatter:on
+	}
 
 	private ApiInfo apiInfo() {
 		ApiInfo apiInfo = new ApiInfo("My REST API", "Some custom description of API.", "API TOS", "Terms of service",
