@@ -8,11 +8,11 @@ import org.springframework.data.web.config.EnableSpringDataWebSupport;
 
 @Configuration
 @EnableSpringDataWebSupport
-public class WebConfiguration {
-	@Bean
-	ServletRegistrationBean h2servletRegistration() {
-		ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
-		registrationBean.addUrlMappings("/console/*");
-		return registrationBean;
-	}
+public class H2ConsoleConfig {
+    @Bean
+    ServletRegistrationBean h2servletRegistration() {
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
+        registrationBean.addUrlMappings("/console/*");
+        return registrationBean;
+    }
 }

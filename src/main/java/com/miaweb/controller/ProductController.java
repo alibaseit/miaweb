@@ -19,12 +19,12 @@ public class ProductController {
 	}
 
 	@GetMapping("")
-	public Page<Product> allProducts(Pageable pageable) {
+	Page<Product> allProducts(Pageable pageable) {
 		return productService.productsPageByPage(pageable);
 	}
 
 	@GetMapping("/code/{code}")
-	public Product expiredProducts(@PathVariable(value = "code") String code) {
+	Product expiredProducts(@PathVariable(value = "code") String code) {
 		return productService.findByCode(code);
 	}
 
@@ -34,30 +34,29 @@ public class ProductController {
     }
 
 	@GetMapping("/namelike/{name}")
-	public List<Product> findNameLike(@PathVariable(value = "name") String name, Pageable pageable) {
+	List<Product> findNameLike(@PathVariable(value = "name") String name, Pageable pageable) {
 		return productService.productNameLike(name, pageable);
 	}
 
 	@GetMapping("/async")
-	public Future<List<Product>> productsAsync() {
+	Future<List<Product>> productsAsync() {
 		return productService.productsAsync();
 	}
 
 	@PostMapping
-	public Product add(@RequestBody Product product) {
+	Product add(@RequestBody Product product) {
 		return productService.save(product);
 	}
 
 	@PutMapping("")
-	public int updateName(@RequestBody Product product){
+	int updateName(@RequestBody Product product){
         String id = product.getId();
         String name = product.getName();
         return productService.updateName(name, id);
     }
 
     @PatchMapping("/{id}")
-    public Product modify(@PathVariable(name = "id") String id, @RequestBody Product product) {
+    Product modify(@PathVariable(name = "id") String id, @RequestBody Product product) {
         return productService.update(id, product);
     }
-
 }

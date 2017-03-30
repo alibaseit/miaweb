@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories(basePackages="com.miaweb.repository.jpa")
 @EnableTransactionManagement	
-public class ApplicationConfiguration {
+public class ApplicationConfig {
 
 }
