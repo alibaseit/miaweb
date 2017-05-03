@@ -5,12 +5,14 @@ import com.miaweb.repository.ABaseJpaRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.concurrent.Future;
+import java.util.function.Predicate;
 
 @Repository
 

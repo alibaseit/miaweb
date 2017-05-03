@@ -4,52 +4,58 @@ import com.miaweb.model.definition.Product;
 import com.miaweb.service.product.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedResources;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.Future;
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/products")
 public class ProductController {
-	private final ProductService productService;
+    private final ProductService productService;
 
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
-	@GetMapping("")
-	Page<Product> allProducts(Pageable pageable) {
-		return productService.productsPageByPage(pageable);
-	}
+    @GetMapping
+    HttpEntity<PagedResources<Product>> products(Pageable pageable, PagedResourcesAssembler assembler) {
+        Page<Product> products = productService.productsPageByPage(pageable);
+        return new ResponseEntity<>(assembler.toResource(products), HttpStatus.OK);
+    }
 
-	@GetMapping("/code/{code}")
-	Product expiredProducts(@PathVariable(value = "code") String code) {
-		return productService.findByCode(code);
-	}
+    @GetMapping("/code/{code}")
+    Product expiredProducts(@PathVariable(value = "code") String code) {
+        return productService.findByCode(code);
+    }
 
-	@GetMapping("/id/{id}")
+    @GetMapping("/id/{id}")
     public Product product(@PathVariable(value = "id") String id) {
         return productService.productById(id);
     }
 
-	@GetMapping("/namelike/{name}")
-	List<Product> findNameLike(@PathVariable(value = "name") String name, Pageable pageable) {
-		return productService.productNameLike(name, pageable);
-	}
+    @GetMapping("/name/{name}")
+    List<Product> findNameLike(@PathVariable(value = "name") String name, Pageable pageable) {
+        return productService.productNameLike(name, pageable);
+    }
 
-	@GetMapping("/async")
-	Future<List<Product>> productsAsync() {
-		return productService.productsAsync();
-	}
+    @GetMapping("/async")
+    Future<List<Product>> productsAsync() {
+        return productService.productsAsync();
+    }
 
-	@PostMapping
-	Product add(@RequestBody Product product) {
-		return productService.save(product);
-	}
+    @PostMapping
+    Product add(@RequestBody Product product) {
+        return productService.save(product);
+    }
 
-	@PutMapping("")
-	int updateName(@RequestBody Product product){
+    @PutMapping("")
+    int updateName(@RequestBody Product product) {
         String id = product.getId();
         String name = product.getName();
         return productService.updateName(name, id);
