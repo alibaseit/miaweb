@@ -15,7 +15,6 @@ import java.util.concurrent.Future;
 import java.util.function.Predicate;
 
 @Repository
-
 public interface ProductRepository extends ABaseJpaRepository<Product, String> {
 
     @Query("select p from Product p where p.name like CONCAT('%',:name,'%')")

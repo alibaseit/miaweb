@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.function.Predicate;
 
 @Service
+@Transactional
 public class ProductService {
 	private final ProductRepository productRepository;
 
@@ -27,7 +27,6 @@ public class ProductService {
 		return productRepository.findAll(pageable);
 	}
 
-	@Transactional
 	public Product save(Product product) {
 		return productRepository.save(product);
 	}
@@ -48,7 +47,6 @@ public class ProductService {
 		return productRepository.deneme(code);
 	}
 
-	@Transactional
     public int updateName(String name, String id) {
         return productRepository.updateName(name, id);
     }

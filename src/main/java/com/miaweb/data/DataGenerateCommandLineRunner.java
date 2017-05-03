@@ -2,7 +2,6 @@ package com.miaweb.data;
 
 import com.miaweb.model.definition.Product;
 import com.miaweb.repository.jpa.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -14,8 +13,7 @@ import java.util.stream.IntStream;
 public class DataGenerateCommandLineRunner implements CommandLineRunner {
 	private ProductRepository productRepository;
 
-	@Autowired
-	public void setProductRepository(ProductRepository productRepository) {
+	public DataGenerateCommandLineRunner(ProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
 
