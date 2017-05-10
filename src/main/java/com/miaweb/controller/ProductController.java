@@ -2,6 +2,8 @@ package com.miaweb.controller;
 
 import com.miaweb.model.definition.Product;
 import com.miaweb.service.product.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -16,6 +18,7 @@ import java.util.concurrent.Future;
 
 @RestController
 @RequestMapping(value = "/products")
+@Api(value = "products", description = "Product API")
 public class ProductController {
     private final ProductService productService;
 
@@ -24,6 +27,7 @@ public class ProductController {
     }
 
     @GetMapping
+    @ApiOperation(value = "Get all product list. Pageable", notes = "All products are listed pageable", response = Product.class)
     HttpEntity<PagedResources<Product>> products(Pageable pageable, PagedResourcesAssembler assembler) {
         Page<Product> products = productService.productsPageByPage(pageable);
         return new ResponseEntity<>(assembler.toResource(products), HttpStatus.OK);
@@ -45,6 +49,7 @@ public class ProductController {
     }
 
     @GetMapping("/async")
+    @ApiOperation(value = "Get all product list. Run as async", notes = "Get all product list. Run as async", response = Product.class)
     Future<List<Product>> productsAsync() {
         return productService.productsAsync();
     }
