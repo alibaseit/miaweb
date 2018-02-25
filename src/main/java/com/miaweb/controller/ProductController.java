@@ -4,6 +4,7 @@ import com.miaweb.model.definition.Product;
 import com.miaweb.service.product.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -21,13 +22,16 @@ import java.util.concurrent.Future;
 @Api(value = "products", description = "Product API")
 public class ProductController {
     private final ProductService productService;
+    private final Environment environment;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, Environment environment) {
         this.productService = productService;
+        this.environment = environment;
     }
 
     @GetMapping
-    @ApiOperation(value = "Get all product list. Pageable", notes = "All products are listed pageable", response = Product.class)
+    @ApiOperation(value = "Get all product list. Pageable", notes = "All products are listed pageable",
+            response = Product.class, produces = "application/json")
     HttpEntity<PagedResources<Product>> products(Pageable pageable, PagedResourcesAssembler assembler) {
         Page<Product> products = productService.productsPageByPage(pageable);
         return new ResponseEntity<>(assembler.toResource(products), HttpStatus.OK);
@@ -61,7 +65,7 @@ public class ProductController {
 
     @PutMapping("")
     int updateName(@RequestBody Product product) {
-        String id = product.getId();
+        String id = Long.toString(product.getId());
         String name = product.getName();
         return productService.updateName(name, id);
     }
@@ -69,5 +73,15 @@ public class ProductController {
     @PatchMapping("/{id}")
     Product modify(@PathVariable(name = "id") String id, @RequestBody Product product) {
         return productService.update(id, product);
+    }
+
+    @GetMapping("/p")
+    String p() {
+        return this.environment.getProperty("psql_passwd");
+    }
+
+    @GetMapping("/ids/{ids}")
+    List<Product> byIds(@PathVariable("ids") Long ids) {
+        return productService.bul(ids);
     }
 }

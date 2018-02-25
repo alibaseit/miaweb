@@ -18,7 +18,8 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.miaweb.controller"))
-                .paths(PathSelectors.any()).build()
+                .paths(PathSelectors.any())
+                .build()
                 .apiInfo(apiInfo());
     }
 

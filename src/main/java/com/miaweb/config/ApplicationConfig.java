@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@EnableJpaRepositories(basePackages="com.miaweb.repository.jpa")
+@EnableJpaRepositories(basePackages="com.miaweb.repository.jpa", repositoryImplementationPostfix="Helper")
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 @EnableScheduling

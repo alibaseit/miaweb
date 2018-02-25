@@ -1,0 +1,3 @@
+java -cp ~/.m2/repository/org/jasypt/jasypt/1.9.2/jasypt-1.9.2.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI input="MiaTrans1_atmasyon" password=orc_passwd algorithm=PBEWithMD5AndDES
+
+mvn -Djasypt.encryptor.password=orc_passwd spring-boot:run

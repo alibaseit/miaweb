@@ -1,12 +1,12 @@
 package com.miaweb.service.product;
 
 import com.miaweb.model.definition.Product;
-import com.miaweb.repository.jpa.ProductRepository;
+import com.miaweb.repository.jpa.product.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -20,9 +20,10 @@ public class ProductService {
 	}
 
     public Product productById(String id) {
-        return productRepository.findOne(id);
+		return productRepository.findById(id);
     }
 
+	@Transactional(readOnly = true)
 	public Page<Product> productsPageByPage(Pageable pageable) {
 		return productRepository.findAll(pageable);
 	}
@@ -57,4 +58,7 @@ public class ProductService {
         old.setCode(product.getCode());
         return productRepository.save(old);
     }
+    public List<Product> bul(Long ids) {
+		return productRepository.tere(ids);
+	}
 }

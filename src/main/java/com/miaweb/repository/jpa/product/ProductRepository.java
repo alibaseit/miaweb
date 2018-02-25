@@ -1,21 +1,21 @@
-package com.miaweb.repository.jpa;
+package com.miaweb.repository.jpa.product;
 
 import com.miaweb.model.definition.Product;
-import com.miaweb.repository.ABaseJpaRepository;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.concurrent.Future;
-import java.util.function.Predicate;
 
 @Repository
-public interface ProductRepository extends ABaseJpaRepository<Product, String> {
+public interface ProductRepository extends JpaRepository<Product, Serializable> {
+    Product findById(String id);
 
     @Query("select p from Product p where p.name like CONCAT('%',:name,'%')")
     List<Product> productNameLike(@Param("name") String name, Pageable pageable);
@@ -35,4 +35,6 @@ public interface ProductRepository extends ABaseJpaRepository<Product, String> {
     @Modifying
     @Query("update Product p set p.name = ?1 where p.id = ?2 ")
     int updateName(String name, String id);
+
+    public List<Product> tere(Long id);
 }

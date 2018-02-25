@@ -11,20 +11,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/deneme")
 public class DenemeController {
-	private ProductService productService;
 
-	@Autowired
-	public DenemeController(ProductService productService) {
-		this.productService = productService;
-	}
+        @GetMapping()
+        public String test() {
+            return "the server running";
+        }
 
-	@GetMapping("/")
-	public String hi() {
-		return "hi";
-	}
-
-	@GetMapping("/code/{code}")
-	public Product expiredProducts(@PathVariable(value = "code") String code) {
-		return productService.findByCode(code);
-	}
+//	private ProductService productService;
+//
+//	@Autowired
+//	public DenemeController(ProductService productService) {
+//		this.productService = productService;
+//	}
+//
+//	@GetMapping("/")
+//	public String hi() {
+//		return "hi";
+//	}
+//
+//	@GetMapping("/code/{code}")
+//	public Product expiredProducts(@PathVariable(value = "code") String code) {
+//		return productService.findByCode(code);
+//	}
 }
